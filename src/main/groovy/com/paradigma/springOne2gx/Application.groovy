@@ -14,11 +14,12 @@ class Application {
 		CustomerRepository repository = context.getBean(CustomerRepository.class)
 
 		// save a couple of customers
-		[[firstName:"Jack", lastName:"Bauer"],
-		 [firstName:"Chloe", lastName:"O'Brian"],
-		 [firstName:"Kim", lastName:"Bauer"],
-		 [firstName:"David", lastName:"Palmer"],
-		 [firstName:"Michelle", lastName:"Dessler"]].each {
+		[[firstName:"Rachel Karen", lastName:"Green"],
+		 [firstName:"Monica E.", lastName:"Geller"],
+		 [firstName:"Phoebe", lastName:"Buffay"],
+		 [firstName:"Joey", lastName:"Tribbiani"],
+		 [firstName:"Ross", lastName:"Geller"],
+		 [firstName:"Chandler Muriel", lastName:"Bing"]].each {
 			repository.save(new Customer(it))
 		}
 
@@ -29,12 +30,13 @@ class Application {
 			println it
 		}
 		// fetch an individual customer by ID
-		Customer customer = repository.findOne(1L);
+		Customer customer = repository.findOne(1L)
 		println "Customer found with findOne(1L): $customer \n"
 
 		// fetch customers by last name
-		List<Customer> bauers = repository.findByLastName("Bauer");
-		println "Customer found with findByLastName('Bauer'): \n--------------------------------------------"
+		def lastName = "Bing"
+		List<Customer> bauers = repository.findByLastName(lastName)
+		println "Customer found with findByLastName('$lastName'): \n--------------------------------------------"
 		bauers.each {println it}
 	}
 }

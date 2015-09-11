@@ -35,8 +35,8 @@ class Application {
 
 		// fetch customers by last name
 		def lastName = "Bing"
-		List<Customer> bauers = repository.findByLastName(lastName)
+		customers = repository.findByLastName(lastName)
 		println "Customer found with findByLastName('$lastName'): \n--------------------------------------------"
-		bauers.each {println it}
+		customers.each {println it}
 	}
 }

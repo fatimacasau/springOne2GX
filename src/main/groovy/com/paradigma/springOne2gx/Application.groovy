@@ -11,8 +11,6 @@ class Application {
 
 		ConfigurableApplicationContext context = SpringApplication.run(Application.class)
 
-		CustomerRepository repository = context.getBean(CustomerRepository.class)
-
 		// save a couple of customers
 		[[firstName:"Rachel Karen", lastName:"Green"],
 		 [firstName:"Monica E.", lastName:"Geller"],
@@ -20,23 +18,24 @@ class Application {
 		 [firstName:"Joey", lastName:"Tribbiani"],
 		 [firstName:"Ross", lastName:"Geller"],
 		 [firstName:"Chandler Muriel", lastName:"Bing"]].each {
-			repository.save(new Customer(it))
+			new Customer(it).save()
 		}
 
 		// fetch all customers
-		Iterable<Customer> customers = repository.findAll()
-		println "Customers found with findAll(): \n-------------------------------"
+		def customers = Customer.list()
+		println "Customers: \n-------------------------------"
 		customers.each {
 			println it
 		}
+
 		// fetch an individual customer by ID
-		Customer customer = repository.findOne(1L)
-		println "Customer found with findOne(1L): $customer \n"
+		Customer customer = Customer.get(1L)
+		println "Customer found with get(1L): $customer \n"
 
 		// fetch customers by last name
 		def lastName = "Bing"
-		List<Customer> bauers = repository.findByLastName(lastName)
+		customers = Customer.findByLastName(lastName)
 		println "Customer found with findByLastName('$lastName'): \n--------------------------------------------"
-		bauers.each {println it}
+		customers.each {println it}
 	}
 }

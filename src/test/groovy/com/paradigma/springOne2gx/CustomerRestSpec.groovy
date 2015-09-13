@@ -21,7 +21,7 @@ class CustomerRestSpec extends Specification {
     def "create new customer via REST with different params: #params"(){
         setup: "people uri"
             RESTClient rest = new RESTClient("http://localhost:8080")
-            def uri = "/customerRepository"
+            def uri = "/customer"
         expect: "status ok"
             result == rest.post(requestContentType : JSON, path : uri, body : params).status
         where: "different params"
@@ -36,7 +36,7 @@ class CustomerRestSpec extends Specification {
             RESTClient rest = new RESTClient("http://localhost:8080")
             def customerId = 1
         and: "people uri"
-            def uri = "/customerRepository/${customerId}"
+            def uri = "/customer/${customerId}"
         when:
             def result = rest.get(path: uri)
         then:

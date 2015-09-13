@@ -10,7 +10,7 @@ import java.util.List
 /**
  * Created by fcasau on 1/28/15.
  */
-@RepositoryRestResource(collectionResourceRel = "customers", path = "customerRepository")
+@RepositoryRestResource(collectionResourceRel = "customers", path = "customer")
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
     List<Customer> findByLastName(@Param(value = "lastName") String lastName)
 }

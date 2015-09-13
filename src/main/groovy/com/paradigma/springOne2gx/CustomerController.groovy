@@ -22,7 +22,7 @@ public class CustomerController {
         return customerRepository.findOne(id)
     }
 
-    @RequestMapping("customers")
+    @RequestMapping("/customers")
     def list() {
         new ModelAndView('views/customer/list', [customers: customerRepository.findAll()])
     }

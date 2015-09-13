@@ -13,9 +13,9 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    long id;
-    String firstName;
-    String lastName;
+    long id
+    String firstName
+    String lastName
 
     @Override
     String toString() {
